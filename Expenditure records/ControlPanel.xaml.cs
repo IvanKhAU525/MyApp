@@ -22,12 +22,8 @@ namespace Expenditure_records
     {
         public ControlPanel()
         {
-            InitializeComponent();
-        }
-
-        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            IEnumerable<CDataGrid> result = new List<CDataGrid>() { new CDataGrid(1, 1, 1, 1) };
+          //  MyDataGrid.ItemsSource = result;
         }
     }
 }

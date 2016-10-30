@@ -11,12 +11,15 @@
         <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Control.FontSize" Value="20"/>
             <Setter Property="Control.FontWeight" Value="Bold"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+            <Setter Property="Control.VerticalAlignment" Value="Center"/>
+            <!--Накладывание пользовательских стилей изменяет стандартный стиль-->
         </Style>
     </Page.Resources>
     <Grid Margin="-2,0,2,0">
         <TabControl TabStripPlacement="Left">
             <TabItem Header="Добовать расход" Width="150" Height="50" Background="White">
-                <DataGrid AutoGenerateColumns="False" Background="#FFB8F38B">
+                <DataGrid x:Name="MyData" AutoGenerateColumns="False" Background="#FFB8F38B" Margin="0,0,582,63" SelectionUnit="Cell">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{x:Null}" Header="№" HeaderStyle="{StaticResource HeaderStyle}" Width="Auto"/>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Категория" HeaderStyle="{StaticResource HeaderStyle}"/>
@@ -24,7 +27,7 @@
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Дата" HeaderStyle="{StaticResource HeaderStyle}"/>
                     </DataGrid.Columns>
                     <TextBox Text="123123"/>
-                    <ComboBoxItem/>
+                    <ComboBoxItem Background="#FFAE2E2E"/>
                     <ComboBoxItem/>
                 </DataGrid>
             </TabItem>
