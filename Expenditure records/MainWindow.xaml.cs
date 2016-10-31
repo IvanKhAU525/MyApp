@@ -10,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Expenditure_records
 {
     /// <summary>
-    /// Логика взаимодействия для Page1.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ControlPanel : Page
+    public partial class MainWindow : Window
     {
-        public ControlPanel()
+        public MainWindow()
         {
-            IEnumerable<CDataGrid> result = new List<CDataGrid>() { new CDataGrid(1, 1, 1, 1) };
-          //  MyDataGrid.ItemsSource = result;
+            InitializeComponent();
         }
     }
 }

@@ -5,31 +5,31 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Expenditure_records"
       mc:Ignorable="d" 
-      d:DesignHeight="1000"
-      Title="CpntrolPanel" Background="#FFF3F3F3" Width="1429">
+      Title="ControlPanel" Background="#FFF3F3F3">
     <Page.Resources>
-        <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
+        <Style x:Key="HeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Control.FontSize" Value="20"/>
             <Setter Property="Control.FontWeight" Value="Bold"/>
-            <Setter Property="Control.HorizontalAlignment" Value="Center"/>
-            <Setter Property="Control.VerticalAlignment" Value="Center"/>
-            <!--Накладывание пользовательских стилей изменяет стандартный стиль-->
         </Style>
     </Page.Resources>
-    <Grid Margin="-2,0,2,0">
+    <Grid >
         <TabControl TabStripPlacement="Left">
             <TabItem Header="Добовать расход" Width="150" Height="50" Background="White">
-                <DataGrid x:Name="MyData" AutoGenerateColumns="False" Background="#FFB8F38B" Margin="0,0,582,63" SelectionUnit="Cell">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{x:Null}" Header="№" HeaderStyle="{StaticResource HeaderStyle}" Width="Auto"/>
+                <Grid>
+                    <Button Content="Button" Height="986" Width="1317" Margin="-46,31,0,-23" Click="Button_Click" Background="Red" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="MyData" AutoGenerateColumns="True" Background="#FFB8F38B" Margin="0,0,582,63" SelectionUnit="Cell" ItemsSource="{Binding TestProperty}" AutoGeneratingColumn="OnAutoGeneratingColumn" ColumnHeaderStyle="{StaticResource HeaderStyle}">
+                        <DataGrid.Columns>
+                            <!--<DataGridTextColumn Binding="{x:Null}" Header="№" HeaderStyle="{StaticResource HeaderStyle}" Width="Auto"/>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Категория" HeaderStyle="{StaticResource HeaderStyle}"/>
                         <DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}" Header="Сумма, &lt;&lt;$&gt;&gt;" HeaderStyle="{StaticResource HeaderStyle}"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Дата" HeaderStyle="{StaticResource HeaderStyle}"/>
-                    </DataGrid.Columns>
-                    <TextBox Text="123123"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Дата" HeaderStyle="{StaticResource HeaderStyle}"/>-->
+                        </DataGrid.Columns>
+                        <!--<TextBox Text="123123"/>
                     <ComboBoxItem Background="#FFAE2E2E"/>
-                    <ComboBoxItem/>
-                </DataGrid>
+                    <ComboBoxItem/>-->
+                    </DataGrid>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Анализ" Height="50" Background="White">
                 <TextBlock Text="Bar Content"/>

@@ -55,40 +55,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Accounts.xaml.cs">
+    <Compile Include="Pages\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Analysis.xaml.cs">
+    <Compile Include="Pages\Analysis.xaml.cs">
       <DependentUpon>Analysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Accounts.xaml">
+    <Page Include="Pages\Accounts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Analysis.xaml">
+    <Page Include="Pages\Analysis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Budget.xaml">
+    <Page Include="Pages\Budget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ControlPanel.xaml">
+    <Page Include="Pages\ControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Budget.xaml.cs">
+    <Compile Include="Pages\Budget.xaml.cs">
       <DependentUpon>Budget.xaml</DependentUpon>
     </Compile>
     <Compile Include="CDataGrid.cs" />
-    <Compile Include="ControlPanel.xaml.cs">
+    <Compile Include="Pages\ControlPanel.xaml.cs">
       <DependentUpon>ControlPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
