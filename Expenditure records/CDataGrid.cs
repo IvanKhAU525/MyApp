@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Expenditure_records
 {
@@ -14,12 +15,12 @@ namespace Expenditure_records
         public double A { get; set; }
         [DisplayName("Категория")]
         public double B { get; set; }
-        [DisplayName("Сумма, >>")]
+        [DisplayName("Сумма, <<$>>")]
         public double C { get; set; }
         [DisplayName("Дата")]
-        public double D { get; set; }
+        public DatePicker D { get; set; }
 
-        public CDataGrid(int a, int b, int c, int d)
+        public CDataGrid(int a, int b, int c, DatePicker d)
         {
             this.A = a;
             this.B = b;
