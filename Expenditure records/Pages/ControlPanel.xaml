@@ -38,7 +38,9 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Анализ" Height="50" Background="White">
-                <TextBlock Text="Bar Content"/>
+                <Grid>
+                    <TextBlock Text="Bar Content"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Прогнозирование" Height="50" Background="White">
                 <TextBlock Text="Baz Content"/>

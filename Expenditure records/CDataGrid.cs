@@ -19,13 +19,16 @@ namespace Expenditure_records
         public double C { get; set; }
         [DisplayName("Дата")]
         public DatePicker D { get; set; }
+        [DisplayName("Удалить строку")]
+        public Button E { get; set; }
 
-        public CDataGrid(int a, int b, int c, DatePicker d)
+        public CDataGrid(int a, int b, int c, DatePicker d, Button e)
         {
             this.A = a;
             this.B = b;
             this.C = c;
             this.D = d;
+            this.E = e;
         }
     }
 }

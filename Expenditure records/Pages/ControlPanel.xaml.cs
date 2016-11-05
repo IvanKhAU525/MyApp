@@ -19,12 +19,15 @@ namespace Expenditure_records
         List<Button> lstOfBut = new List<Button>();
         DatePicker dp = new DatePicker();
         Int16 clk;
+        Button button = new Button();
         public ObservableCollection<CDataGrid> TestProperty { get; set; } = new ObservableCollection<CDataGrid>();
         public ControlPanel()
         {
-                        DataContext = this;
-            TestProperty.Add(new CDataGrid(12, 213, 23, dp));
-            TestProperty.Add(new CDataGrid(12, 213, 23, dp));
+            dp.SelectedDate = DateTime.Today;
+            dp.IsDropDownOpen = true;
+            DataContext = this;
+            TestProperty.Add(new CDataGrid(12, 213, 23, dp, button));
+            TestProperty.Add(new CDataGrid(12, 213, 23, dp, button));
         }
 
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -41,7 +44,7 @@ namespace Expenditure_records
                 case "Категория": e.Column.MinWidth = 120; break;
                 case "Сумма, <<$>>": e.Column.MinWidth = 160; break;
                 case "Дата": e.Column.MinWidth = 60; break;
-
+                case "Удалить строку": e.Column.MinWidth = 200; break;
             }
         }
 
@@ -85,19 +88,20 @@ namespace Expenditure_records
         private void Button_Add_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Button but = new Button();
-            but.Name = "but_" + clk;
-            clk++;
-            var col = new DataGridTemplateColumn();
-            string xaml = "<DataTemplate><Button Content=\"кнопко\" /></DataTemplate>";
-            var sr = new MemoryStream(Encoding.UTF8.GetBytes(xaml));
-            var pc = new ParserContext();
-            pc.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
-            pc.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
-            DataTemplate datatemplate = (DataTemplate)XamlReader.Load(sr, pc);
-            col.CellTemplate = datatemplate;
-            TestProperty.Add(new CDataGrid(0, 0, 0, dp));
-            if  (MyData.Columns.Count == 4)
-                MyData.Columns.Add(col);
+             
+            //clk++;
+            //string xaml;
+            //var col = new DataGridTemplateColumn();
+            //xaml = "<DataTemplate><Button Content=\"кнопко\" /></DataTemplate>";
+            //var sr = new MemoryStream(Encoding.UTF8.GetBytes(xaml));
+            //var pc = new ParserContext();
+            //pc.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
+            //pc.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
+            //DataTemplate datatemplate = (DataTemplate)XamlReader.Load(sr, pc);
+            //col.CellTemplate = datatemplate;
+            //TestProperty.Add(new CDataGrid(0, 0, 0, dp));
+            //if  (MyData.Columns.Count == 4)
+            //    MyData.Columns.Add(col);
         }
 
         private void Button_Delete_Click(object sender, System.Windows.RoutedEventArgs e)

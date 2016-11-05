@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow">
     <Window.Content>
-        <Frame Source="/Pages/ControlPanel.xaml"/>
+        <Grid>
+            <DatePicker Margin="310,187,291,237"/>
+        </Grid>
     </Window.Content>
 </Window>
