@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Expenditure_records"
       mc:Ignorable="d" 
-      Title="ControlPanel" Background="#FFF3F3F3" Height="635" Width="988">
+      Title="ControlPanel" Background="#FFF3F3F3" Height="635" Width="988" Initialized="ControlPanel_OnInitialized">
     <Page.Resources>
         <Style x:Key="HeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Control.FontSize" Value="20"/>
@@ -15,6 +15,9 @@
             <Setter Property="Control.Background" Value="#FFE1EC74"/>
             <Setter Property="Control.FontStyle" Value="Italic"/>
         </Style>
+        <!--<DataTemplate x:Key="temp">
+            <Button Content="кнопко" Click="Btn_Click"/>
+        </DataTemplate>-->
     </Page.Resources>
     <Grid Height="851" Width="1414" >
         <TabControl TabStripPlacement="Left" Margin="0,0,426,224">
@@ -23,15 +26,6 @@
                     <DataGrid x:Name="MyData" AutoGenerateColumns="True" Background="#FFB8F38B"
                               SelectionUnit="Cell" ItemsSource="{Binding TestProperty}" AutoGeneratingColumn="OnAutoGeneratingColumn"
                               ColumnHeaderStyle="{StaticResource HeaderStyle}" CellStyle="{StaticResource ColumnStyle}" Margin="0,0,-200,-28">
-                        <!--<DataGrid.Columns >
-                            --><!--<DataGridTextColumn Binding="{x:Null}" Header="№" HeaderStyle="{StaticResource HeaderStyle}" Width="Auto"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Категория" HeaderStyle="{StaticResource HeaderStyle}"/>
-                        <DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}" Header="Сумма, &lt;&lt;$&gt;&gt;" HeaderStyle="{StaticResource HeaderStyle}"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Дата" HeaderStyle="{StaticResource HeaderStyle}"/>--><!--
-                        </DataGrid.Columns>
-                        --><!--<TextBox Text="123123"/>
-                    <ComboBoxItem Background="#FFAE2E2E"/>
-                    <ComboBoxItem/>-->
                     </DataGrid>
                     <Button Margin="637,39,-364,306" Content="Добавить" Click="Button_Add_Click"/>
                     <Button Margin="637,138,-364,207" Content="удалить" Click="Button_Delete_Click"/>

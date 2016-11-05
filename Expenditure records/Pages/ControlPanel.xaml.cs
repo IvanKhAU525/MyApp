@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace Expenditure_records
@@ -19,15 +22,15 @@ namespace Expenditure_records
         List<Button> lstOfBut = new List<Button>();
         DatePicker dp = new DatePicker();
         Int16 clk;
-        Button button = new Button();
         public ObservableCollection<CDataGrid> TestProperty { get; set; } = new ObservableCollection<CDataGrid>();
+
         public ControlPanel()
         {
-            dp.SelectedDate = DateTime.Today;
-            dp.IsDropDownOpen = true;
+            dp.
             DataContext = this;
-            TestProperty.Add(new CDataGrid(12, 213, 23, dp, button));
-            TestProperty.Add(new CDataGrid(12, 213, 23, dp, button));
+            TestProperty.Add(new CDataGrid(12, 213, 23, dp));
+            TestProperty.Add(new CDataGrid(12, 213, 23, dp));
+
         }
 
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -40,11 +43,19 @@ namespace Expenditure_records
             }
             switch (displayName)
             {
-                case "№": e.Column.MinWidth = 35; break;
-                case "Категория": e.Column.MinWidth = 120; break;
-                case "Сумма, <<$>>": e.Column.MinWidth = 160; break;
-                case "Дата": e.Column.MinWidth = 60; break;
-                case "Удалить строку": e.Column.MinWidth = 200; break;
+                case "№":
+                    e.Column.MinWidth = 35;
+                    break;
+                case "Категория":
+                    e.Column.MinWidth = 120;
+                    break;
+                case "Сумма, <<.!.>>":
+                    e.Column.MinWidth = 160;
+                    break;
+                case "Дата":
+                    e.Column.MinWidth = 60;
+                    break;
+
             }
         }
 
@@ -87,27 +98,39 @@ namespace Expenditure_records
 
         private void Button_Add_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Button but = new Button();
-             
-            //clk++;
-            //string xaml;
-            //var col = new DataGridTemplateColumn();
-            //xaml = "<DataTemplate><Button Content=\"кнопко\" /></DataTemplate>";
-            //var sr = new MemoryStream(Encoding.UTF8.GetBytes(xaml));
-            //var pc = new ParserContext();
-            //pc.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
-            //pc.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
-            //DataTemplate datatemplate = (DataTemplate)XamlReader.Load(sr, pc);
-            //col.CellTemplate = datatemplate;
-            //TestProperty.Add(new CDataGrid(0, 0, 0, dp));
-            //if  (MyData.Columns.Count == 4)
-            //    MyData.Columns.Add(col);
+            TestProperty.Add(new CDataGrid(0, 0, 0, dp));
         }
 
         private void Button_Delete_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            try { TestProperty.RemoveAt(0); }
-            catch (System.ArgumentOutOfRangeException) { }
+            try
+            {
+                TestProperty.RemoveAt(0);
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+            }
+        }
+
+        private void ControlPanel_OnInitialized(object sender, EventArgs e)
+        {
+            var buttonTemplate = new FrameworkElementFactory(typeof(Button));
+            buttonTemplate.AddHandler(
+                    Button.ClickEvent,
+                    new RoutedEventHandler((o, events) =>
+                    {
+                        var btn = o as Button;
+
+                    })
+                    );
+            MyData.Columns.Add(
+                new DataGridTemplateColumn()
+                {
+                    Header = "123",
+                    CellTemplate = new DataTemplate(),
+                    DisplayIndex = 4
+                }
+                );
         }
     }
 }
