@@ -11,6 +11,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Expenditure_records
 {
@@ -19,18 +21,13 @@ namespace Expenditure_records
     /// </summary>
     public partial class ControlPanel : Page
     {
-        List<Button> lstOfBut = new List<Button>();
         DatePicker dp = new DatePicker();
-        Int16 clk;
+        Int16 index;
         public ObservableCollection<CDataGrid> TestProperty { get; set; } = new ObservableCollection<CDataGrid>();
 
         public ControlPanel()
         {
-            dp.
             DataContext = this;
-            TestProperty.Add(new CDataGrid(12, 213, 23, dp));
-            TestProperty.Add(new CDataGrid(12, 213, 23, dp));
-
         }
 
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -49,7 +46,7 @@ namespace Expenditure_records
                 case "Категория":
                     e.Column.MinWidth = 120;
                     break;
-                case "Сумма, <<.!.>>":
+                case "Сумма, <<$>>":
                     e.Column.MinWidth = 160;
                     break;
                 case "Дата":
@@ -59,7 +56,7 @@ namespace Expenditure_records
             }
         }
 
-        public static string GetPropertyDisplayName(object descriptor)
+      public static string GetPropertyDisplayName(object descriptor)
         {
             var pd = descriptor as PropertyDescriptor;
 
@@ -92,45 +89,40 @@ namespace Expenditure_records
                     }
                 }
             }
-
             return null;
         }
 
         private void Button_Add_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             TestProperty.Add(new CDataGrid(0, 0, 0, dp));
+            AddButtonsToWrapPanel();
         }
 
-        private void Button_Delete_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void AddButtonsToWrapPanel()
+        {
+            Button but = new Button();
+            ImageBrush imbr = new ImageBrush();
+            imbr.ImageSource = new System.Windows.Media.Imaging.BitmapImage(new Uri("Images/delete.png", UriKind.Relative));
+            but.Background = imbr;
+            WrapPanel.Children.Add(but);
+            but.Tag = index;
+            index++;
+            but.Height = 20;
+            but.Width = 50;
+            but.Click += new RoutedEventHandler(Button_Click);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 TestProperty.RemoveAt(0);
+                WrapPanel.Children.Remove(sender as Button);
+                sender = null;
             }
             catch (System.ArgumentOutOfRangeException)
             {
             }
-        }
-
-        private void ControlPanel_OnInitialized(object sender, EventArgs e)
-        {
-            var buttonTemplate = new FrameworkElementFactory(typeof(Button));
-            buttonTemplate.AddHandler(
-                    Button.ClickEvent,
-                    new RoutedEventHandler((o, events) =>
-                    {
-                        var btn = o as Button;
-
-                    })
-                    );
-            MyData.Columns.Add(
-                new DataGridTemplateColumn()
-                {
-                    Header = "123",
-                    CellTemplate = new DataTemplate(),
-                    DisplayIndex = 4
-                }
-                );
         }
     }
 }
