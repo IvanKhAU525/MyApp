@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       Title="ControlPanel" Background="#FFF3F3F3" Height="635" Width="988">
     <Page.Resources>
-        <Style x:Key="HeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <!--<Style x:Key="HeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Control.FontSize" Value="20"/>
             <Setter Property="Control.FontWeight" Value="Bold"/>
         </Style>
@@ -15,12 +15,9 @@
             <Setter Property="Control.Background" Value="#FFE1EC74"/>
             <Setter Property="Control.FontStyle" Value="Italic"/>
             <Setter Property="Control.Height" Value="20"/>
-        </Style>
-        <!--<DataTemplate x:Key="temp">
-            <Button Content="кнопко" Click="Btn_Click"/>
-        </DataTemplate>-->
+        </Style>-->
     </Page.Resources>
-    <Grid Height="851" Width="1414" >
+    <Grid Height="851" Width="1414">
         <TabControl TabStripPlacement="Left" Margin="0,0,426,224">
             <TabItem Header="Добовать расход" Background="White" Width="150" Height="50" x:Name="tabtop">
                 <Grid Margin="0,0,428,216">
@@ -28,15 +25,34 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition Height="131*"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="MyData" AutoGenerateColumns="True" Background="#FFB8F38B"
-                              SelectionUnit="Cell" ItemsSource="{Binding TestProperty}" AutoGeneratingColumn="OnAutoGeneratingColumn"
-                              ColumnHeaderStyle="{StaticResource HeaderStyle}" CellStyle="{StaticResource ColumnStyle}" Grid.RowSpan="2">
-                        <DataGrid.Columns></DataGrid.Columns>
+                    <DataGrid x:Name="MyData" AutoGenerateColumns="False"
+                              SelectionUnit="Cell"
+                              Grid.RowSpan="2"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                              xmlns:local="clr-namespace:Expenditure_records">
+                        <DataGrid.Resources>
+                            <ObjectDataProvider x:Key="enum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+                                <ObjectDataProvider.MethodParameters>
+                                    <x:Type Type="local:Category"/>
+                                </ObjectDataProvider.MethodParameters>
+                            </ObjectDataProvider>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Numeration}"></DataGridTextColumn>
+                            <DataGridComboBoxColumn Header="Категория" SelectedItemBinding="{Binding Category}" ItemsSource="{Binding Source={StaticResource enum}}"></DataGridComboBoxColumn>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Sum}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Date}" ></DataGridTextColumn>
+                            <DataGridCheckBoxColumn Header="Удалить" Binding="{Binding SelectRow}"></DataGridCheckBoxColumn>
+                        </DataGrid.Columns>
                     </DataGrid>
+                    <Label x:Name="label" Margin="460,112,-351,122" Grid.Row="1"/>
                     <Button Margin="637,27.333,-364,306" Content="Добавить" Click="Button_Add_Click" Grid.Row="1"/>
-                    <WrapPanel x:Name="WrapPanel" Width="50" Margin="402,24,-50,3" Grid.Row="1">
-                        <!--<Button Height="20" Width="50"></Button>-->
-                    </WrapPanel>
+                    <Button Margin="637,130,-364,203" Content="Удалить" Click="Button_Delete_Click" Grid.Row="1"/>
+                    <ScrollViewer Margin="402,24,-38,0" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility ="Auto" HorizontalAlignment="Left">
+                        <WrapPanel x:Name="WrapPanel" Width="20" Grid.Row="1" Orientation="Vertical">
+                        </WrapPanel>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Анализ" Height="50" Background="White">
