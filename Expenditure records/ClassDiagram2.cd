@@ -10,9 +10,10 @@
   <Class Name="Expenditure_records.CDataGrid" Collapsed="true">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAABAAAAAIAAAAAAABAAAAAAAACAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIgAABAAABAAAAAAAACAQ=</HashCode>
       <FileName>CDataGrid.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Expenditure_records.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="4" Y="1.5" Width="1.5" />
@@ -49,10 +50,10 @@
   <Class Name="Expenditure_records.ControlPanel" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAQAAAAAAAAAAAAAAAABAAAACAAAABAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAQAAAAAQAAAkAAAAAABAAAASAAAABAAA=</HashCode>
       <FileName>Pages\ControlPanel.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Expenditure_records.ToolStripButton" Collapsed="true">
     <Position X="2.25" Y="2.5" Width="1.5" />

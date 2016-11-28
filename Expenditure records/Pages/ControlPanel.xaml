@@ -30,7 +30,8 @@
                               Grid.RowSpan="2"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                              xmlns:local="clr-namespace:Expenditure_records">
+                              xmlns:local="clr-namespace:Expenditure_records" CellEditEnding="MyData_CellEditEnding">
+                        
                         <DataGrid.Resources>
                             <ObjectDataProvider x:Key="enum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
                                 <ObjectDataProvider.MethodParameters>
@@ -39,20 +40,23 @@
                             </ObjectDataProvider>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Numeration}"></DataGridTextColumn>
-                            <DataGridComboBoxColumn Header="Категория" SelectedItemBinding="{Binding Category}" ItemsSource="{Binding Source={StaticResource enum}}"></DataGridComboBoxColumn>
-                            <DataGridTextColumn Header="Сумма" Binding="{Binding Sum}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Дата" Binding="{Binding Date}" ></DataGridTextColumn>
-                            <DataGridCheckBoxColumn Header="Удалить" Binding="{Binding SelectRow}"></DataGridCheckBoxColumn>
+                            
+                            <DataGridTextColumn Binding="{Binding Numeration}" IsReadOnly="True"/>
+                            <DataGridComboBoxColumn Header="Категория" SelectedItemBinding="{Binding Category}" 
+                                                    ItemsSource="{Binding Source={StaticResource enum}}"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Sum}"/>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Date}" CanUserSort="False"/>
+                            <DataGridTemplateColumn Header="Удалить">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="Button">
+                                        <Button Content="Удалить" Click="Button_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label x:Name="label" Margin="460,112,-351,122" Grid.Row="1"/>
                     <Button Margin="637,27.333,-364,306" Content="Добавить" Click="Button_Add_Click" Grid.Row="1"/>
-                    <Button Margin="637,130,-364,203" Content="Удалить" Click="Button_Delete_Click" Grid.Row="1"/>
-                    <ScrollViewer Margin="402,24,-38,0" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility ="Auto" HorizontalAlignment="Left">
-                        <WrapPanel x:Name="WrapPanel" Width="20" Grid.Row="1" Orientation="Vertical">
-                        </WrapPanel>
-                    </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Анализ" Height="50" Background="White">

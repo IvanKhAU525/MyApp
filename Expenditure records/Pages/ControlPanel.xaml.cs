@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,7 +22,6 @@ namespace Expenditure_records
     /// </summary>
     public partial class ControlPanel : Page
     {
-        int index, number;
         ObservableCollection<CDataGrid> list = null;
         DatePicker dp = new DatePicker();
         public ControlPanel()
@@ -31,6 +31,7 @@ namespace Expenditure_records
 
         private void Button_Add_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            int number = MyData.Items.Count;
             dp.SelectedDate = DateTime.UtcNow;
             if (list == null)
             {
@@ -39,15 +40,41 @@ namespace Expenditure_records
                 MyData.CanUserAddRows = false;
                 dp.SelectedDate = DateTime.UtcNow; //переинициализация объекта 
             }
-            list.Add(new CDataGrid() { Numeration = 1, Category = Category.Scheta, Sum = 12, Date = dp, SeclectRow = true });
+            list.Add(new CDataGrid() { Numeration = number, Category = Category.Scheta, Sum = 12, Date = dp });
+            number++;
         }
 
-        private void Button_Delete_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var currentRowIndex = MyData.Items.IndexOf(MyData.CurrentItem);
+            list.RemoveAt(currentRowIndex);
+            RecalculationOfNumbers();
         }
 
         private void RecalculationOfNumbers()
         {
+            int i = 0;
+            foreach (var ob in list)
+            {
+                ob.Numeration = i;
+                i++;
+            }
+        }
+
+        private void MyData_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.Column.DisplayIndex == 3)
+            {
+                var text = e.EditingElement as TextBox;
+                string input = text.Text;
+                string pattern = @"^(\d{2}.\d{2}.\d{4})$";
+                bool result = Regex.IsMatch(input, pattern);
+                if (!result)
+                {
+                    MessageBox.Show("String exception format! Try again.");
+                    text.Clear();
+                }
+            }
         }
     }
 }
