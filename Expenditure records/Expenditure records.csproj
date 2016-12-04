@@ -35,6 +35,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamicDataDisplay">
+      <HintPath>..\..\..\..\..\..\Загрузки\DynamicDataDisplay v0.3 Binaries &amp; Samples\DynamicDataDisplay.Coastline\DynamicDataDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay.Coastline">
+      <HintPath>..\..\..\..\..\..\Загрузки\DynamicDataDisplay v0.3 Binaries &amp; Samples\DynamicDataDisplay.Coastline\DynamicDataDisplay.Coastline.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay.Controls">
+      <HintPath>..\..\..\..\..\..\Загрузки\DynamicDataDisplay v0.3 Binaries &amp; Samples\DynamicDataDisplay.Controls\DynamicDataDisplay.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay.Maps">
+      <HintPath>..\..\..\..\..\..\Загрузки\DynamicDataDisplay v0.3 Binaries &amp; Samples\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay.resources">
+      <HintPath>..\..\..\..\..\..\Загрузки\DynamicDataDisplay v0.3 Binaries &amp; Samples\DynamicDataDisplay\ru-ru\DynamicDataDisplay.resources.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -57,6 +72,7 @@
     </ApplicationDefinition>
     <Compile Include="Category.cs" />
     <Compile Include="DataGridHelper.cs" />
+    <Compile Include="Diagrams.cs" />
     <Compile Include="Pages\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
@@ -67,6 +83,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Rows.cs" />
     <Page Include="Pages\Accounts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\UserComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Expenditure_records"
              StartupUri="Pages/ControlPanel.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/UserComboBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

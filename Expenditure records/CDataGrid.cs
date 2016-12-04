@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
@@ -9,9 +11,21 @@ namespace Expenditure_records
         private int numeration;
         private Category category;
         private double sum;
-        private DatePicker date;
+        private DateTime? date;
+        private ObservableCollection<string> combocollection = new ObservableCollection<string> {"123","456","789" };
             
         public CDataGrid() { }
+
+        public ObservableCollection<string> ComboCollection
+        {
+            get { return combocollection; }
+
+            set
+            {
+                combocollection.Add(value.ToString());
+                OnPropertyChanged("ComboCollection");
+            }
+        }
 
         public int Numeration
         {
@@ -46,9 +60,18 @@ namespace Expenditure_records
             }
         }
 
-        public DatePicker Date
+        public DateTime? Date
         {
-            get; set;
+            get
+            {
+                return date;
+            }
+            set
+            {
+                if (value.Equals(date)) return;
+                date = value;
+                OnPropertyChanged();
+            }
         }
 
         public static implicit operator CDataGrid(int v)

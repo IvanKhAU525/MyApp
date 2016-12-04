@@ -9,6 +9,14 @@ namespace Expenditure_records
     {
         Buisness,
         Scheta,
-        House
+        House,
+        Music,
+        Games,
+        Work,
+        Education,
+        Resort,
+        Communication,
+        Eat,
+        Walk
     }
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Expenditure_records"
+      xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
       mc:Ignorable="d" 
       Title="ControlPanel" Background="#FFF3F3F3" Height="635" Width="988">
     <Page.Resources>
@@ -30,7 +31,7 @@
                               Grid.RowSpan="2"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                              xmlns:local="clr-namespace:Expenditure_records" CellEditEnding="MyData_CellEditEnding">
+                              xmlns:local="clr-namespace:Expenditure_records" Margin="0,0,-35,0">
                         
                         <DataGrid.Resources>
                             <ObjectDataProvider x:Key="enum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
@@ -40,16 +41,28 @@
                             </ObjectDataProvider>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            
                             <DataGridTextColumn Binding="{Binding Numeration}" IsReadOnly="True"/>
                             <DataGridComboBoxColumn Header="Категория" SelectedItemBinding="{Binding Category}" 
                                                     ItemsSource="{Binding Source={StaticResource enum}}"/>
                             <DataGridTextColumn Header="Сумма" Binding="{Binding Sum}"/>
-                            <DataGridTextColumn Header="Дата" Binding="{Binding Date}" CanUserSort="False"/>
+                            <DataGridTemplateColumn CanUserSort="True" SortMemberPath="Date">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate ="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn Header="Удалить">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate DataType="Button">
                                         <Button Content="Удалить" Click="Button_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="ComboBox">
+                                        <ComboBox ItemsSource="{Binding ComboColletction}" SelectedItem="{Binding }"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -60,8 +73,8 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Анализ" Height="50" Background="White">
-                <Grid>
-                    <TextBlock Text="Bar Content"/>
+                <Grid Margin="20">
+                    <d3:ChartPlotter Name="plotter"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Прогнозирование" Height="50" Background="White">

@@ -15,6 +15,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
+
 namespace Expenditure_records
 {
     /// <summary>
@@ -29,18 +30,17 @@ namespace Expenditure_records
             InitializeComponent();
         }
 
-        private void Button_Add_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
             int number = MyData.Items.Count;
-            dp.SelectedDate = DateTime.UtcNow;
             if (list == null)
             {
+                
                 list = new ObservableCollection<CDataGrid>();
                 MyData.ItemsSource = list;
                 MyData.CanUserAddRows = false;
-                dp.SelectedDate = DateTime.UtcNow; //переинициализация объекта 
             }
-            list.Add(new CDataGrid() { Numeration = number, Category = Category.Scheta, Sum = 12, Date = dp });
+            list.Add(new CDataGrid() { Numeration = number, Category = Category.Scheta, Date = DateTime.UtcNow});
             number++;
         }
 
@@ -58,22 +58,6 @@ namespace Expenditure_records
             {
                 ob.Numeration = i;
                 i++;
-            }
-        }
-
-        private void MyData_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            if (e.Column.DisplayIndex == 3)
-            {
-                var text = e.EditingElement as TextBox;
-                string input = text.Text;
-                string pattern = @"^(\d{2}.\d{2}.\d{4})$";
-                bool result = Regex.IsMatch(input, pattern);
-                if (!result)
-                {
-                    MessageBox.Show("String exception format! Try again.");
-                    text.Clear();
-                }
             }
         }
     }
