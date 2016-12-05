@@ -31,7 +31,7 @@
                               Grid.RowSpan="2"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                              xmlns:local="clr-namespace:Expenditure_records" Margin="0,0,-35,0">
+                              xmlns:local="clr-namespace:Expenditure_records" Margin="0,0,-35,0" VerticalScrollBarVisibility="Visible">
                         
                         <DataGrid.Resources>
                             <ObjectDataProvider x:Key="enum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
@@ -62,7 +62,11 @@
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate DataType="ComboBox">
-                                        <ComboBox ItemsSource="{Binding ComboColletction}" SelectedItem="{Binding }"/>
+                                        <ComboBox  ItemsSource="{Binding ComboCollection}">
+                                            <ComboBox.DataContext>
+                                                <local:ControlPanel/>
+                                            </ComboBox.DataContext>
+                                        </ComboBox>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -74,7 +78,7 @@
             </TabItem>
             <TabItem Header="Анализ" Height="50" Background="White">
                 <Grid Margin="20">
-                    <d3:ChartPlotter Name="plotter"/>
+                    <!--<d3:ChartPlotter Name="plotter"/>-->
                 </Grid>
             </TabItem>
             <TabItem Header="Прогнозирование" Height="50" Background="White">

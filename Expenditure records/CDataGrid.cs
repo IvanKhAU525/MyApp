@@ -12,20 +12,20 @@ namespace Expenditure_records
         private Category category;
         private double sum;
         private DateTime? date;
-        private ObservableCollection<string> combocollection = new ObservableCollection<string> {"123","456","789" };
+        //private ObservableCollection<string> combocollection = new ObservableCollection<string> {"123","456","789" };
             
         public CDataGrid() { }
 
-        public ObservableCollection<string> ComboCollection
-        {
-            get { return combocollection; }
+        //public ObservableCollection<string> ComboCollection
+        //{
+        //    get { return combocollection; }
 
-            set
-            {
-                combocollection.Add(value.ToString());
-                OnPropertyChanged("ComboCollection");
-            }
-        }
+        //    set
+        //    {
+        //        combocollection.Add(value.ToString());
+        //        //OnPropertyChanged("ComboCollection");
+        //    }
+        //}
 
         public int Numeration
         {

@@ -14,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Expenditure_records.Themes;
 
 
 namespace Expenditure_records
@@ -23,38 +24,51 @@ namespace Expenditure_records
     /// </summary>
     public partial class ControlPanel : Page
     {
-        ObservableCollection<CDataGrid> list = null;
+        public  ObservableCollection<CDataGrid> CDataGridList { get;  set; } = null;
+        public string SelectedItem { get; set; } = null;
+        private static ObservableCollection<string> combocollection = new ObservableCollection<string> { "123", "456", "789" };
+        public static ObservableCollection<string> ComboCollection
+        {
+            get { return combocollection; }
+
+            set
+            {
+                combocollection.Add(value.ToString());
+                //OnPropertyChanged("ComboCollection");
+            }
+        }
         DatePicker dp = new DatePicker();
         public ControlPanel()
         {
             InitializeComponent();
+            UserComboBox.DataGrid = MyData;
         }
 
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
             int number = MyData.Items.Count;
-            if (list == null)
+            if (CDataGridList == null)
             {
                 
-                list = new ObservableCollection<CDataGrid>();
-                MyData.ItemsSource = list;
+                CDataGridList = new ObservableCollection<CDataGrid>();
+                MyData.ItemsSource = CDataGridList;
                 MyData.CanUserAddRows = false;
             }
-            list.Add(new CDataGrid() { Numeration = number, Category = Category.Scheta, Date = DateTime.UtcNow});
+            CDataGridList.Add(new CDataGrid() { Numeration = number, Category = Category.Scheta, Date = DateTime.UtcNow});
             number++;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var currentRowIndex = MyData.Items.IndexOf(MyData.CurrentItem);
-            list.RemoveAt(currentRowIndex);
+            CDataGridList.RemoveAt(currentRowIndex);
             RecalculationOfNumbers();
         }
 
         private void RecalculationOfNumbers()
         {
             int i = 0;
-            foreach (var ob in list)
+            foreach (var ob in CDataGridList)
             {
                 ob.Numeration = i;
                 i++;

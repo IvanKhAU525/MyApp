@@ -84,6 +84,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Rows.cs" />
+    <Compile Include="Themes\UserComboBox.cs" />
     <Page Include="Pages\Accounts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
