@@ -15,7 +15,8 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Expenditure_records.Themes;
-
+using System.Windows.Input;
+using System.Windows.Controls.Primitives;
 
 namespace Expenditure_records
 {
@@ -26,7 +27,8 @@ namespace Expenditure_records
     {
         public  ObservableCollection<CDataGrid> CDataGridList { get;  set; } = null;
         public string SelectedItem { get; set; } = null;
-        private static ObservableCollection<string> combocollection = new ObservableCollection<string> { "123", "456", "789" };
+        private static ObservableCollection<string> combocollection = new ObservableCollection<string> { "1", "2", "3", "4", "5"};
+        Regex regEx = new Regex(@"[^\s]");
         public static ObservableCollection<string> ComboCollection
         {
             get { return combocollection; }

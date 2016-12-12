@@ -62,10 +62,16 @@
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate DataType="ComboBox">
-                                        <ComboBox  ItemsSource="{Binding ComboCollection}">
+                                        <ComboBox ItemsSource="{Binding ComboCollection}">
                                             <ComboBox.DataContext>
                                                 <local:ControlPanel/>
                                             </ComboBox.DataContext>
+                                            <!--<ComboBox.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="Удалить" Click="ItemDelete"/>
+                                                    <MenuItem Header="Добавить"/>
+                                                </ContextMenu>
+                                            </ComboBox.ContextMenu>-->
                                         </ComboBox>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

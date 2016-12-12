@@ -17,6 +17,6 @@ namespace Expenditure_records
         Resort,
         Communication,
         Eat,
-        Walk
+        Walk, a, b, c, d, e, f, g, h
     }
 }
